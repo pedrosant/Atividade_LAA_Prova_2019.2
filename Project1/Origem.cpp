@@ -6,12 +6,14 @@ void tostring(int v[10], int n);
 void inserirNumv1(int v[10], int n);
 void inserirNumv2(int v[10], int n);
 void insertionSort(int v[10], int n);
-int compararVetores(int v1[10], int v2[10], int n);
-int commpararLog_n(int v1[10], int v2[10], int n);
+int encontrar_N_esimo(int v[10], int n, int posicao);
+int encontrarLog_n(int v[10], int n, int posicao);
 
 int main() {
-	int result;
-	int resultLogN;
+	int resultv1;
+	int resultv2;
+	int resultLogNv1;
+	int resultLogNv2;
 	int v1[10];
 	int v2[10];
 
@@ -26,11 +28,15 @@ int main() {
 	tostring(v1,10);
 	tostring(v2, 10);
 
-	result = compararVetores(v1,v2,10);
-	resultLogN = commpararLog_n(v1,v2,10);
+	resultv1 = encontrar_N_esimo(v1,10,8);
+	resultv2 = encontrar_N_esimo(v2, 10, 8);
+	resultLogNv1 = encontrarLog_n(v1,10,8);
+	resultLogNv2 = encontrarLog_n(v2, 10, 8);
 
-	cout << "O n-esimo valor e: " << result << endl;
-	cout << "O n-esimo valor em O(log n) e: " << resultLogN <<::endl;
+	cout << "O n-esimo valor do vertor 1 e: " << resultv1 << endl;
+	cout << "O n-esimo valor do vertor 2 e: " << resultv2 << endl;
+	cout << "O n-esimo valor em O(log n) do vertor 1 e: " << resultLogNv1 <<::endl;
+	cout << "O n-esimo valor em O(log n) do vertor 2 e: " << resultLogNv2 << ::endl;
 	return 0;
 }
 
@@ -70,23 +76,17 @@ void insertionSort(int v[10], int n) {
 	}
 }
 
-int compararVetores(int v1[10], int v2[10], int n) {
+int encontrar_N_esimo(int v[10], int n, int posicao) {
 	int result;
-	if (v1[9] > v2[9]){
-		result = v1[9];
-	}else{
-		result = v2[9];
-	}
+	result = v[posicao];
 	return result;
 }
 
-int commpararLog_n(int v1[10], int v2[10],int n) {
+int encontrarLog_n(int v[10],int n, int posicao) {
 	int result;
 	for (int i = 0; i < n; i++) {
-		if (v1[i] > v2[i]){
-			result = v1[i];
-		}else {
-			result = v2[i];
+		if (i == posicao){
+			result = v[posicao];
 		}
 	}
 	return result;
